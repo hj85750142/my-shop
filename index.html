@@ -25,18 +25,5 @@
     <h1>欢迎来到我的测试电商网站</h1>
     <button id="buy-btn">模拟购买商品（触发转化）</button>
 
-    <script>
-        document.getElementById("buy-btn").addEventListener("click", function() {
-            window.uetq = window.uetq || [];
-
-            // 发送给微软
-            window.uetq.push('event', 'purchase', { 'gv': 5000, 'gc': 'JPY' });
-
-            // 打印在控制台
-            console.log("=== 微软技术支持测试 ===");
-            console.log("成功触发购买事件！已向微软上报数据：5000 JPY");
-            console.log("当前 window.uetq 队列内容为:", window.uetq);
-        });
-    </script>
 </body>
 </html>
