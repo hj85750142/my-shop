@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My Test Shop</title>
+    <title>My Test Shop</title>
 <script>
     (function(w, d, t, u, o) {
         w[u] = w[u] || [], o.ts = (new Date).getTime();
@@ -22,20 +22,25 @@
 </script>
 </head>
 <body>
-    <h1>欢迎来到我的测试电商网站</h1>
-    <button id="buy-btn">模拟购买商品（触发转化）</button>
-    <script>
-        document.getElementById("buy-btn").addEventListener("click", function() {
-            window.uetq = window.uetq || [];
+    <h1>欢迎来到我的测试电商网站（标准自定义事件版）</h1>
+    <button id="buy-btn">模拟购买商品（触发转化）</button>
+    <script>
+        document.getElementById("buy-btn").addEventListener("click", function() {
+            window.uetq = window.uetq || [];
 
-            // 发送给微软
-            window.uetq.push('event', 'purchase', { 'ev': 5000, 'ec': 'JPY' });
+            // 【核心修正】放弃保留词 purchase，采用全拼标准自定义事件参数
+            // 这样写可以强迫 bat.js 必须在 Payload 中暴露出 ec, ea, ev 等明文参数
+            window.uetq.push('event', 'click_buy_btn', { 
+                'event_category': 'checkout', 
+                'event_label': 'test_product',
+                'event_value': 5000 
+            });
 
-            // 打印在控制台
-            console.log("=== 微软技术支持测试 ===");
-            console.log("成功触发购买事件！已向微软上报数据：5000 JPY");
-            console.log("当前 window.uetq 队列内容为:", window.uetq);
-        });
-    </script>
+            // 打印在控制台
+            console.log("=== 微软技术支持标准测试 ===");
+            console.log("成功触发标准自定义事件！已向微软上报数据：Category=checkout, Action=click_buy_btn, Value=5000");
+            console.log("当前 window.uetq 队列内容为:", window.uetq);
+        });
+    </script>
 </body>
 </html>
