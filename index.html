@@ -1,79 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>My Test Shop</title>
 
-    <!-- Microsoft UET Tag -->
+    <!-- Microsoft Advertising UET base tag -->
     <script>
-        (function (w, d, t, r, u) {
-            var f, n, i;
-            w[u] = w[u] || [];
-
-            f = function () {
-                var o = {
-                    ti: "187272910"
-                };
-
-                o.q = w[u];
-                w[u] = new UET(o);
-                w[u].push("pageLoad");
-            };
-
-            n = d.createElement(t);
-            n.src = r;
-            n.async = 1;
-
-            n.onload = n.onreadystatechange = function () {
-                var s = this.readyState;
-
-                if (!s || s === "loaded" || s === "complete") {
-                    f();
-                    n.onload = n.onreadystatechange = null;
-                }
-            };
-
-            i = d.getElementsByTagName(t)[0];
-            i.parentNode.insertBefore(n, i);
-
-        })(window, document, "script", "https://bat.bing.com/bat.js", "uetq");
+    (function(w, d, t, r, u) {
+        var f, n, i;
+        w[u] = w[u] || [];
+        f = function() {
+            var o = { ti: "187272910", enableAutoSpaTracking: true };
+            o.q = w[u];
+            w[u] = new UET(o);
+            w[u].push("pageLoad");
+        };
+        n = d.createElement(t);
+        n.src = r;
+        n.async = 1;
+        n.onload = n.onreadystatechange = function() {
+            var s = this.readyState;
+            if (!s || s === "loaded" || s === "complete") {
+                f();
+                n.onload = n.onreadystatechange = null;
+            }
+        };
+        i = d.getElementsByTagName(t)[0];
+        i.parentNode.insertBefore(n, i);
+    })(window, document, "script", "https://bat.bing.com/bat.js", "uetq");
     </script>
-
+</head>
+<body>
     <noscript>
         <img src="https://bat.bing.com/action/0?ti=187272910&Ver=2"
-            >
+             height="0" width="0"
+             style="display:none; visibility:hidden;"
+             alt="">
+    </noscript>
 
-<body>
-
-    <h1>My Test Shop</h1>
-
-    <p>Microsoft Advertising UET Test Page</p>
-
-    <button id="buy-btn">
-        Buy Now
-    </button>
+    <h1>欢迎来到我的测试电商网站</h1>
+    <p>点击下面的按钮，模拟购买并触发 Microsoft Advertising UET 自定义事件。</p>
+    <button id="buy-btn" type="button">模拟购买商品（触发转化）</button>
 
     <script>
-        document.getElementById("buy-btn").addEventListener("click", function () {
-
-            window.uetq = window.uetq || [];
-
-            window.uetq.push(
-                'event',
-                'purchase',
-                {
-                    event_category: 'checkout',
-                    event_label: 'test_product',
-                    revenue_value: 50,
-                    currency: 'USD'
-                }
-            );
-
-            console.log("UET Purchase Event Sent");
+    function uet_report_conversion() {
+        window.uetq = window.uetq || [];
+        window.uetq.push('event', 'purchase', {
+            event_category: 'checkout',
+            event_label: 'test_product',
+            revenue_value: 50,
+            currency: 'USD'
         });
+
+        console.log('=== Microsoft Advertising UET 测试 ===');
+        console.log('UET Purchase Event Sent');
+        console.log('Category=checkout, Action=purchase, Label=test_product, Revenue=50 USD');
+        console.log('当前 window.uetq:', window.uetq);
+    }
+
+    document.getElementById('buy-btn').addEventListener('click', uet_report_conversion);
     </script>
-
 </body>
-
 </html>
