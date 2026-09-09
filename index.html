@@ -1,30 +1,79 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <script><noscript><img src="//bat.bing.com/action/0?ti=187272910&Ver=2" height="0" width="0" style="display:none; visibility: hidden;" /></noscript><script>(function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){var o={ti:"187272910"};o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");</script></script>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <title>My Test Shop</title>
-</head>
+
+    <!-- Microsoft UET Tag -->
+    <script>
+        (function (w, d, t, r, u) {
+            var f, n, i;
+            w[u] = w[u] || [];
+
+            f = function () {
+                var o = {
+                    ti: "187272910"
+                };
+
+                o.q = w[u];
+                w[u] = new UET(o);
+                w[u].push("pageLoad");
+            };
+
+            n = d.createElement(t);
+            n.src = r;
+            n.async = 1;
+
+            n.onload = n.onreadystatechange = function () {
+                var s = this.readyState;
+
+                if (!s || s === "loaded" || s === "complete") {
+                    f();
+                    n.onload = n.onreadystatechange = null;
+                }
+            };
+
+            i = d.getElementsByTagName(t)[0];
+            i.parentNode.insertBefore(n, i);
+
+        })(window, document, "script", "https://bat.bing.com/bat.js", "uetq");
+    </script>
+
+    <noscript>
+        <img src="https://bat.bing.com/action/0?ti=187272910&Ver=2"
+            >
+
 <body>
-    <h1>欢迎来到我的测试电商网站</h1>
-    <button id="buy-btn">模拟购买商品（触发转化）</button>
+
+    <h1>My Test Shop</h1>
+
+    <p>Microsoft Advertising UET Test Page</p>
+
+    <button id="buy-btn">
+        Buy Now
+    </button>
 
     <script>
-    document.getElementById("buy-btn").addEventListener("click", function () {
-        window.uetq = window.uetq || [];
+        document.getElementById("buy-btn").addEventListener("click", function () {
 
-        window.uetq.push('event', 'purchase', {
-            event_category: 'checkout',
-            event_label: 'test_product',
-            revenue_value: 50,
-            currency: 'USD'
+            window.uetq = window.uetq || [];
+
+            window.uetq.push(
+                'event',
+                'purchase',
+                {
+                    event_category: 'checkout',
+                    event_label: 'test_product',
+                    revenue_value: 50,
+                    currency: 'USD'
+                }
+            );
+
+            console.log("UET Purchase Event Sent");
         });
-
-        console.log('=== 微软技术支持标准测试 ===');
-        console.log('UET Purchase Event Sent');
-        console.log('成功触发标准自定义事件！已向微软上报数据：Category=checkout, Action=purchase, Value=50');
-        console.log('当前 window.uetq 队列内容为:', window.uetq);
-    });
     </script>
+
 </body>
+
 </html>
